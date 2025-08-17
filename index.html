@@ -192,6 +192,14 @@
             cursor: pointer;
             white-space: nowrap;
         }
+        
+        .mobile-text {
+            display: none;
+        }
+        
+        .desktop-text {
+            display: inline;
+        }
 
         .nav-tab:hover, .nav-tab.active {
             background: none;
@@ -209,12 +217,8 @@
         }
         
         @media (max-width: 768px) {
-            .nav-tab:not(:last-child)::after {
-                display: none;
-            }
-            
             .nav-tabs {
-                gap: 10px;
+                gap: 0;
             }
         }
 
@@ -631,7 +635,7 @@
 
             .left-panel {
                 position: static;
-                text-align: center;
+                text-align: left;
                 flex: none;
                 width: 100%;
             }
@@ -639,7 +643,7 @@
             .profile-image {
                 width: 140px;
                 height: 140px;
-                margin: 0 auto 15px auto;
+                margin: 0 0 15px 0;
             }
             
             .name {
@@ -655,8 +659,16 @@
             }
             
             .contact-links {
-                align-items: center;
+                align-items: flex-start;
                 margin-bottom: 15px;
+                flex-direction: row;
+                gap: 8px;
+            }
+            
+            .contact-links a:not(:last-child)::after {
+                content: ' / ';
+                color: #666;
+                margin-left: 8px;
             }
             
             .contact-links a {
@@ -686,19 +698,33 @@
             }
             
             .nav-tabs {
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 10px;
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                gap: 0;
                 margin-bottom: 25px;
+                overflow-x: auto;
             }
             
             .nav-tab {
                 font-size: 0.9rem;
-                padding: 5px 10px;
+                padding: 0;
+                white-space: nowrap;
+            }
+            
+            .mobile-text {
+                display: inline !important;
+            }
+            
+            .desktop-text {
+                display: none !important;
             }
             
             .nav-tab:not(:last-child)::after {
-                display: none;
+                content: ' / ' !important;
+                color: #666 !important;
+                margin: 0 8px !important;
+                font-weight: normal !important;
+                display: inline !important;
             }
             
             .vertical-divider {
@@ -775,16 +801,25 @@
             }
             
             .nav-tabs {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
-                gap: 8px;
+                gap: 0;
+                overflow-x: auto;
             }
             
             .nav-tab {
                 font-size: 0.85rem;
-                padding: 8px 15px;
-                border: 1px solid #eee;
-                border-radius: 4px;
+                padding: 0;
+                border: none;
+                border-radius: 0;
+            }
+            
+            .nav-tab:not(:last-child)::after {
+                content: ' / ' !important;
+                color: #666 !important;
+                margin: 0 8px !important;
+                font-weight: normal !important;
+                display: inline !important;
             }
             
             .project-image img {
@@ -852,11 +887,23 @@
 
             <div class="right-content">
                 <div class="nav-tabs">
-                    <div class="nav-tab active" onclick="showSection('about')">about</div>
-                    <div class="nav-tab" onclick="showSection('currently')">research directions</div>
+                    <div class="nav-tab active" onclick="showSection('about')">
+                        <span class="desktop-text">about</span>
+                        <span class="mobile-text">about</span>
+                    </div>
+                    <div class="nav-tab" onclick="showSection('currently')">
+                        <span class="desktop-text">research directions</span>
+                        <span class="mobile-text">research</span>
+                    </div>
                     <!-- <div class="nav-tab" onclick="showSection('past')">past adventures</div> -->
-                    <div class="nav-tab" onclick="showSection('other-things')">other things I do</div>
-                    <div class="nav-tab" onclick="showSection('random')">random</div>
+                    <div class="nav-tab" onclick="showSection('other-things')">
+                        <span class="desktop-text">other things I do</span>
+                        <span class="mobile-text">other</span>
+                    </div>
+                    <div class="nav-tab" onclick="showSection('random')">
+                        <span class="desktop-text">random</span>
+                        <span class="mobile-text">random</span>
+                    </div>
                 </div>
 
                 <div id="about" class="content-section active">
