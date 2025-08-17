@@ -1,0 +1,13 @@
+# Ignore all files in parent directory
+../*
+
+# Keep only website files
+!index.html
+!*.png
+!*.jpg
+!*.gif
+!*.ico
+!*.css
+!*.js
+!*.html
+!*.md 

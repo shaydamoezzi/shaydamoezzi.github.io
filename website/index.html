@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shayda Moezzi</title>
+    <link rel="icon" type="image/png" href="pixels.jpg" class="circular-favicon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            line-height: 1.5;
+            color: #333;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto 0 100px;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .left-panel {
+            flex: 0 0 200px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .profile-section {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            overflow: hidden;
+            margin: 0 0 15px 0;
+        }
+
+        .name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 6px;
+        }
+
+        .title {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .location {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 12px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-start;
+        }
+
+        .contact-links a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.7rem;
+        }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        .affiliations {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .affiliation-item {
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+        }
+
+        .affiliation-item:hover .affiliation-institution {
+            color: #000;
+        }
+
+        .affiliation-item:hover .affiliation-role {
+            color: #000;
+        }
+
+        .affiliation-item:hover .affiliation-period {
+            color: #000;
+        }
+
+        .affiliation-institution {
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 2px;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .affiliation-role {
+            color: #999;
+            margin-bottom: 2px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .affiliation-period {
+            color: #bbb;
+            font-size: 0.75rem;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        .affiliation-current {
+            color: #8B0000;
+            font-weight: 600;
+        }
+
+        /* Favicon styling */
+        .circular-favicon {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 16px;
+            height: 16px;
+        }
+
+        .vertical-divider {
+            width: 2px;
+            background: #eee;
+            margin: 0 20px;
+        }
+
+        .right-content {
+            flex: 1;
+            max-width: 700px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            margin-bottom: 30px;
+            justify-content: flex-start;
+        }
+
+        .nav-tab {
+            padding: 0;
+            background: none;
+            border: none;
+            text-decoration: none;
+            color: #000;
+            font-weight: 400;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: none;
+            color: #81C784;
+            border: none;
+            text-decoration: none;
+            text-shadow: 0 0 8px rgba(129, 199, 132, 0.6);
+        }
+
+        .nav-tab:not(:last-child)::after {
+            content: ' / ';
+            color: #666;
+            margin: 0 8px;
+            font-weight: normal;
+        }
+
+        .content-section {
+            display: none;
+            margin: 0 auto;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: #000;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .about-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            margin-bottom: 12px;
+        }
+
+        .about-text h3 {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        .news-item {
+            margin-bottom: 12px;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 3px solid #000;
+        }
+
+        .news-date {
+            font-weight: 600;
+            color: #000;
+            font-size: 0.8rem;
+        }
+
+        .news-text {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        .publication {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+
+        .pub-title {
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .pub-authors {
+            color: #666;
+            margin-bottom: 6px;
+            font-style: italic;
+            font-size: 0.8rem;
+        }
+
+        .pub-venue {
+            color: #000;
+            font-weight: 500;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .pub-links a {
+            color: #000;
+            text-decoration: none;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border: 1px solid #000;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .pub-links a:hover {
+            background: #000;
+            color: white;
+        }
+
+        .course-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #000;
+        }
+
+        .course-title {
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .course-description {
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+        }
+
+        .course-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .course-tag {
+            background: #f0f0f0;
+            color: #000;
+            padding: 3px 6px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .timeline-item {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 2px solid #000;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 4px;
+            font-size: 0.8rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 4px;
+            font-size: 0.8rem;
+        }
+
+        .timeline-institution {
+            color: #666;
+            margin-bottom: 4px;
+            font-size: 0.8rem;
+        }
+
+        .timeline-description {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* Recent Things Timeline */
+        .timeline-container {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #ddd;
+        }
+
+        .timeline-item-recent {
+            position: relative;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item-recent::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 12px;
+            width: 20px;
+            height: 1px;
+            background: #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item-recent:hover::before {
+            background: #81C784;
+            width: 25px;
+        }
+
+        .timeline-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .timeline-content a {
+            color: #666;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content a:hover {
+            color: #333;
+            border-bottom-color: #666;
+        }
+
+        /* Exploration Items Styling */
+        .exploration-item {
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        
+        .project-item {
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        
+        .project-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .project-text {
+            flex: 1;
+        }
+        
+        .project-image {
+            flex-shrink: 0;
+        }
+        
+        .project-title {
+            color: #000;
+            font-size: 0.9rem;
+            font-weight: normal;
+            margin-bottom: 8px;
+            margin-top: 0;
+        }
+        
+        .project-label {
+            font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #8B0000;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+            text-transform: uppercase;
+        }
+        
+        .conference-label {
+            font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #333;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+            text-transform: none;
+        }
+        
+        .project-item:hover {
+            box-shadow: 0 0 15px rgba(107, 142, 35, 0.1);
+            background-color: #fafafa;
+        }
+        
+        .demo-link {
+            color: #6B8E23;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-link:hover {
+            color: #556B2F;
+            border-bottom-color: #6B8E23;
+        }
+        
+
+
+        .about-text a {
+            color: #6B8E23;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .about-text a:hover {
+            color: #556B2F;
+            border-bottom-color: #6B8E23;
+        }
+        
+        .about-text a.professor-link {
+            color: #666 !important;
+            border-bottom-color: #ccc;
+        }
+        
+        .about-text a.professor-link:hover {
+            color: #333 !important;
+            border-bottom-color: #666;
+        }
+
+        /* Special styling for key terms */
+        .key-term {
+            color: #8B0000 !important;
+        }
+        
+        .about-text a.key-term {
+            color: #8B0000 !important;
+            border-bottom-color: #8B0000;
+        }
+        
+        .about-text a.key-term:hover {
+            color: #8B0000 !important;
+            border-bottom-color: #8B0000;
+        }
+
+        .date-label {
+            font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #666;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .main-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .left-panel {
+                position: static;
+                text-align: center;
+            }
+
+            .profile-image {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="main-container">
+            <div class="left-panel">
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <img src="headshot.png" alt="Shayda Moezzi" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    </div>
+                    <div class="name">Shayda Moezzi</div>
+                    <div class="title">CS PhD Student @ Northeastern</div>
+                    <div class="location">Boston, MA</div>
+                    <div class="contact-links">
+                        <a href="https://x.com/shaydamoezzi" target="_blank">X</a>
+                        <a href="mailto:moezzi.s@northeastern.edu">email me</a>
+                        <a href="https://www.linkedin.com/in/shaydamoezzi/" target="_blank">connect with me</a>
+                    </div>
+                    <div class="affiliations">
+                        <div class="affiliation-item">
+                            <div class="affiliation-institution">Northeastern University</div>
+                            <div class="affiliation-role">CS PhD Student</div>
+                            <div class="affiliation-period affiliation-current">[current]</div>
+                        </div>
+                        <div class="affiliation-item">
+                            <div class="affiliation-institution">MIT</div>
+                            <div class="affiliation-role">BS in CS</div>
+                            <div class="affiliation-period">2020 - 2024</div>
+                        </div>
+                        <div class="affiliation-item">
+                            <div class="affiliation-institution">ETH Zürich AI Institute</div>
+                            <div class="affiliation-role">Research Fellow</div>
+                            <div class="affiliation-period">Summer 2023</div>
+                        </div>
+                        <div class="affiliation-item">
+                            <div class="affiliation-institution">Imperial College London</div>
+                            <div class="affiliation-role">Exchange Student</div>
+                            <div class="affiliation-period">Winter 2023</div>
+                        </div>
+                        <div class="affiliation-item">
+                            <div class="affiliation-institution">NASA Jet Propulsion Laboratory</div>
+                            <div class="affiliation-role">Co-Op, Mars Curiosity Rover Team</div>
+                            <div class="affiliation-period">Summer, Fall 2022</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vertical-divider"></div>
+
+            <div class="right-content">
+                <div class="nav-tabs">
+                    <div class="nav-tab active" onclick="showSection('about')">about</div>
+                    <div class="nav-tab" onclick="showSection('currently')">research directions</div>
+                    <!-- <div class="nav-tab" onclick="showSection('past')">past adventures</div> -->
+                    <div class="nav-tab" onclick="showSection('other-things')">other things I do</div>
+                    <div class="nav-tab" onclick="showSection('random')">random</div>
+                </div>
+
+                <div id="about" class="content-section active">
+                    <h3 class="section-title">about</h3>
+                    <div class="about-text">
+                        <p>Hello there, I am Shayda, a first-year computer engineering PhD student in the <a href="https://ostadabbas.sites.northeastern.edu/" target="_blank" class="key-term">Augmented Cognition Lab</a> at Northeastern University, advised by <a href="https://coe.northeastern.edu/people/ostadabbas-sarah/" target="_blank" class="professor-link">Prof. Sarah Ostadabbas</a>.</p>
+                        
+                        <p>Previously, I studied computer science at <span class="key-term">MIT</span>.</p>
+
+                        <p>Currently, my research focuses on computer vision, with a focus on video understanding and reasoning.</p>
+                        
+                        <p>I am particularly interested in long-form videos, where meaning emerges over minutes to hours. My work addresses the technical challenge of modeling the evolving spatial and temporal relationships that define how events and contexts unfold over extended timescales.</p>
+                        
+                        <p>Ultimately, I aim to develop systems that can reason about complex real-world video data. I think this could help machines better organize, interpret, and construct memories from continuous visual experience, much like the way we (humans) do.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Recent Things Section -->
+                <div id="recent-things" class="content-section active">
+                    <h3 style="font-size: 1.1rem; margin: 30px 0 20px 0; color: #000; border-bottom: 1px solid #eee; padding-bottom: 8px;">what I've been up to</h3>
+                    
+                    <div class="timeline-container">
+                        <div class="timeline-item-recent">
+                            <div class="timeline-content">
+                                <p><span class="date-label">[May '25]</span> I gave a talk for the Voxel51 online <a href="https://voxel51.com/events/best-of-wacv-may-30-2025" target="_blank">Best of WACV 2025</a>. You can watch it <a href="https://www.youtube.com/watch?v=Po-S6TTPbHY&ab_channel=Voxel51" target="_blank">here</a> if you'd like.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item-recent">
+                            <div class="timeline-content">
+                                <p><span class="date-label">[March '25]</span> I helped plan and organize the <a href="https://cv4smalls2025.sites.northeastern.edu/" target="_blank">CV4Smalls Workshop at WACV 2025</a>.</p>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <div class="timeline-item-recent">
+                            <div class="timeline-content">
+                                <p><span class="date-label">[Feb '25]</span> I spoke at the <a href="https://neweek.sites.northeastern.edu/women-in-engineering-webinar/" target="_blank">Women in Engineering webinar for Northeastern College of Engineering</a> during National Engineer's week.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-recent">
+                            <div class="timeline-content">
+                                <p><span class="date-label">[Dec '24]</span> My first  <a href="https://openaccess.thecvf.com/content/WACV2025W/CV4Small/papers/Moezzi_Classification_of_Infant_Sleep-Wake_States_from_Natural_Overnight_In-Crib_Sleep_WACVW_2025_paper.pdf" target="_blank">published work</a> at WACVW for classifying infant sleep from natural in-crib sleep videos.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-recent">
+                            <div class="timeline-content">
+                                <p><span class="date-label">[Sep '24]</span> I was part of hosting the <a href="https://coe.northeastern.edu/event/visual-ai-hackathon/" target="_blank">Visual AI Hackathon</a> at Northeastern University.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-recent">
+                            <div class="timeline-content">
+                                <p><span class="date-label">[Aug '24]</span> Awarded the Sami Alsaif Fellowship for the 2024-25 academic year, presented annually to one PhD student in Northeastern's College of Engineering.</p>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div id="projects" class="content-section active">
+                    <h3 style="font-size: 1.1rem; margin: 50px 0 20px 0; color: #000; border-bottom: 1px solid #eee; padding-bottom: 8px;">projects + publications</h3>
+                    
+                    <div class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h4 class="project-title"><span class="project-label">[publication]</span> <span class="conference-label">[WACV WORKSHOPS 2025]</span> Classification of Infant Sleep-Wake States from In-Crib Sleep Videos</h4>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">I introduce a deep learning algorithm that classifies infant sleep-wake states from 90-second baby monitor video clips, using 152 hours of overnight footage from 17 infants aged 4-11 months recorded in home environments. The algorithm combines visual and motion features to achieve over 80% accuracy on clear sleep or wake states, enabling automated, non-invasive infant sleep monitoring without intrusive equipment.</p>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;"><a href="https://openaccess.thecvf.com/content/WACV2025W/CV4Small/papers/Moezzi_Classification_of_Infant_Sleep-Wake_States_from_Natural_Overnight_In-Crib_Sleep_WACVW_2025_paper.pdf" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">paper</a>, <a href="https://shaydamoezzi.github.io/InfantSleepWakeClassification/" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">project page</a></p>
+                            </div>
+                            <div class="project-image">
+                                <img src="wacv25-2.png" alt="Two-Stream Spatiotemporal Model for Infant Sleep-Wake Classification" style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h4 class="project-title"><span class="project-label">[project]</span> Pose estimation and action recognition for Infants</h4>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">I played with infant action recognition using a Spatio-Temporal GCN trained on the NTU RGB+D dataset. I also demo-ed using OpenPose for infant pose estimation, evaluating key point stability and identified common failure modes for this small data domain.</p>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;"><a href="https://www.youtube.com/watch?v=PePPJJKbV94&ab_channel=ShaydaMoezzi" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">watch video</a> (<a href="https://www.youtube.com/watch?v=PePPJJKbV94&ab_channel=ShaydaMoezzi" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">action recognition</a>, <a href="https://www.youtube.com/watch?v=OU6w3Mpn1bg&ab_channel=ShaydaMoezzi" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">pose estimation</a>)</p>
+                            </div>
+                            <div class="project-image">
+                                <img src="infantpose.png" alt="Infant pose estimation demo" style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h4 class="project-title"><span class="project-label">[project]</span> Sketchbot: redefining robotic drawing of 3D objects with fine details</h4>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">I built a full-stack robot "painter" for the kuka iiwa robotic arm. We designed a pipeline for image-to-sketch simplification, vectorization and trajectory planning, and stroke-effect control to reproduce fine details from 3D objects with the robot arm. Project work done during the robotic manipulation course at MIT taught by the wonderful <a href="https://locomotion.csail.mit.edu/russt.html" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">Russ Tedrake</a>.</p>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;"><a href="https://www.youtube.com/watch?v=SJOY06yLCpQ&ab_channel=ShaydaMoezzi" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">watch video</a>, <a href="https://drive.google.com/file/d/1u3frcWGwNfbCBR8_x8_XHhnSNrGG64Lv/view?usp=sharing" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">read report</a></p>
+                            </div>
+                            <div class="project-image">
+                                <img src="robotarm.png" alt="Robotic arm drawing demo" style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h4 class="project-title"><span class="project-label">[project]</span> Programmable OLED Matrix from scratch</h4>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">I took a nanotechnology course at MIT with <a href="https://niroui.mit.edu/" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">Farnaz Niroui</a>. We spent great hours in <a href="https://mitnano.mit.edu/" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">MIT.nano</a> and built a programmable OLED device from scratch: device stack design, patterning, and characterization, and presented it at the <a href="https://mtlsites.mit.edu/mtlexpo/marc2022/program/proceedings/" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">Microsystems Annual Research Conference 2022</a>.</p>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;"><a href="https://www.youtube.com/watch?v=ZQ6U52F4Kps&ab_channel=ShaydaMoezzi" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">watch video</a></p>
+                            </div>
+                            <div class="project-image">
+                                <img src="oled.png" alt="OLED matrix device" style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h4 class="project-title"><span class="project-label">[project]</span> Evaluating robustness of neural style transfer systems</h4>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">I worked with <a href="https://scholar.google.com/citations?user=t8RKSJsAAAAJ&hl=en" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">Kristian Georgiev</a> to probe the robustness of neural style transfer, showing how small perturbations can significantly degrade perceptual quality. This work was done during my favorite course, advances in computer vision, at MIT taught by <a href="https://billf.mit.edu/" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">Bill Freeman</a> and <a href="https://web.mit.edu/phillipi/" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">Philip Isola</a>.</p>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;"><a href="https://drive.google.com/file/d/14SeE9191bujU8gn-IjSx2DZSmWRklOEC/view?usp=sharing" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">read report</a></p>
+                            </div>
+                            <div class="project-image">
+                                <img src="nst.png" alt="Neural style transfer demo" style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Things I Do Section -->
+                <div id="other-things" class="content-section">
+                    <h3 style="font-size: 1.1rem; margin: 50px 0 20px 0; color: #000; border-bottom: 1px solid #eee; padding-bottom: 8px;">other things I do</h3>
+                    
+                    <div class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h4 class="project-title"><span class="project-label">[teaching]</span> <span class="date-label">[SINCE SUMMER '23]</span> AI Instructor at Inspirit AI</h4>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">I really enjoy teaching and passing the passion I have for AI to others.I teach in both middle and high-school programs at <a href="https://www.inspiritai.com/" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">Inspirit AI</a>: a live, online AI initiative developed and taught by alumni and graduate students from Stanford and MIT. I teach foundational AI topics like computer vision and NLP. It has been one of the most rewarding experiences.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h4 class="project-title"><span class="project-label">[teaching]</span> <span class="date-label">[SUMMER '23]</span> Teaching Assistant, The Coding School – Quantum Computing Course</h4>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">I taught the Qubit by Qubit quantum computing course at The Coding School. You can read more about my experience in this reflection: <a href="https://the-cs.medium.com/ta-reflection-the-students-i-met-this-summer-changed-me-in-so-many-ways-f969def51109" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">"The Students I Met This Summer Changed Me in So Many Ways."</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h4 class="project-title"><span class="project-label">[organizing]</span> <span class="date-label">[2022-2024]</span> Organizer & Host, MIT AI Club Reading Group</h4>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">I hosted and led weekly AI-focused reading groups for the <a href="https://www.ai-at-mit.com/" target="_blank" style="color: #555; text-decoration: none; border-bottom: 1px solid #ddd;">MIT AI Club</a>, inviting speakers and facilitating robust discussions on emerging AI research.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h4 class="project-title"><span class="project-label">[coffee]</span> <span class="date-label">[SUMMERS]</span> Barista at Better Buzz Coffee (Encinitas, CA)</h4>
+                                <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">Spent several summers working as a barista at Better Buzz Coffee in Encinitas, CA—fueling my love for coffee and community.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Adventures Section -->
+                <div id="currently" class="content-section">
+
+                    <div class="about-text" style="margin-top: 30px;">
+                        <h3 style="font-size: 1.1rem; margin: 30px 0 20px 0; color: #000; border-bottom: 1px solid #eee; padding-bottom: 8px;">current research directions</h3>
+                        
+                        <p>I'm in my first year of my PhD, which means much of my time is spent exploring, experimenting, and shaping my research direction. Right now, my work is converging around the broad theme of <span class="key-term">video understanding and reasoning</span>: how machines can interpret, organize, and make sense of long, complex, real-world video data. Below are some of the directions I'm exploring:</p>
+                        
+                        <div class="project-item" style="margin-top: 20px;">
+                            <div class="project-content">
+                                <div class="project-text">
+                                    <h4 class="project-title"><span class="project-label">[research]</span> Long Video Reasoning</h4>
+                                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">Designing representations for long-form videos (minutes to hours) that capture motion, entities, and evolving context. Exploring motion-based memory structures to help models reason about past events more like humans do.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-content">
+                                <div class="project-text">
+                                    <h4 class="project-title"><span class="project-label">[research]</span> Temporal Segmentation for Infant Sleep</h4>
+                                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">Building models to classify sleep vs. wake states in overnight infant recordings using motion-centric features (CoTracker, Grounding DINO) within a Neural Network–Hidden Markov Model framework.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-content">
+                                <div class="project-text">
+                                    <h4 class="project-title"><span class="project-label">[research]</span> Interesting Moments in Video</h4>
+                                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">Brainstorming methods for AI glasses that detect and capture "interesting" moments, combining motion trajectory clustering with semantic grounding for lightweight, real-time video understanding.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-content">
+                                <div class="project-text">
+                                    <h4 class="project-title"><span class="project-label">[research]</span> Broadening View Synthesis of Dynamic Scenes from Constrained Monocular Videos</h4>
+                                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px; line-height: 1.5;">Working on a method for novel-view rendering of dynamic scenes from monocular video. Tackles the limits of NeRF and Gaussian Splatting in handling viewpoint expansion beyond training poses.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // If about tab is clicked, also show projects section
+            if (sectionId === 'about') {
+                document.getElementById('projects').classList.add('active');
+                document.getElementById('recent-things').classList.add('active');
+            }
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html> 
