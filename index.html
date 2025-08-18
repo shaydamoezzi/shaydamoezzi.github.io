@@ -147,6 +147,88 @@
             font-weight: 300;
             transition: color 0.3s ease;
         }
+        
+        .quote-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .quote-text {
+            font-family: 'Calibri', 'Candara', 'Segoe', 'Segoe UI', 'Optima', 'Arial', sans-serif;
+            font-style: italic;
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: #555;
+            margin: 0 0 12px 0;
+            padding: 0;
+            border: none;
+            quotes: none;
+        }
+        
+        .quote-text::before,
+        .quote-text::after {
+            content: '';
+        }
+        
+        .quote-author {
+            font-size: 0.7rem;
+            color: #888;
+            text-align: right;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        /* Creative Work Items Styling */
+        .creative-work-item {
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        .creative-work-item:hover {
+            background-color: #f8f9fa;
+        }
+
+
+
+        .creative-work-title {
+            font-size: 1rem;
+            color: #8B0000;
+            font-weight: normal;
+            margin-bottom: 12px;
+            font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+        }
+
+        .creative-work-description {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .creative-work-link {
+            margin: 0;
+        }
+
+        .creative-work-link a {
+            color: #555;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .creative-work-link a:hover {
+            color: #000;
+            border-bottom-color: #000;
+            background-color: rgba(139, 0, 0, 0.1);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
 
         .affiliation-current {
             color: #8B0000;
@@ -880,6 +962,12 @@
                             <div class="affiliation-period">Summer, Fall 2022</div>
                         </div>
                     </div>
+                    
+                    <div class="quote-section">
+                        <blockquote class="quote-text">
+                            "I can see nothing," said I, handing it back to my friend. "On the contrary, Watson, you can see everything. You fail, however, to reason from what you see. You are too timid in drawing your inferences."
+                        </blockquote>
+                    </div>
                 </div>
             </div>
 
@@ -900,9 +988,9 @@
                         <span class="desktop-text">other things I do</span>
                         <span class="mobile-text">other</span>
                     </div>
-                    <div class="nav-tab" onclick="showSection('random')">
-                        <span class="desktop-text">random</span>
-                        <span class="mobile-text">random</span>
+                    <div class="nav-tab" onclick="showSection('beyond research')">
+                        <span class="desktop-text">beyond research</span>
+                        <span class="mobile-text">beyond</span>
                     </div>
                 </div>
 
@@ -1125,6 +1213,69 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- beyond research Section -->
+                <div id="beyond research" class="content-section">
+                    
+                    <div class="about-text">
+                        <h4 style="font-size: 1rem; color: #000; margin-bottom: 15px; font-weight: 600;">preface</h4>
+                        <p>Beyond my research endeavors, there is another side of me shaped by curiosity about culture, architecture, design, and the quiet corners of human experience. These essays, analyses, and poems are fragments of that exploration. They are attempts to make sense of the worlds we build and inherit, to trace meaning in objects and spaces, and to hold onto memory through words. Some are analytical, others are lyrical, but all reflect the same impulse: to look closely, to question, and to find resonance between the intimate and the universal.</p>
+                    </div>
+
+                    <div class="creative-work-item">
+                        <h4 class="creative-work-title">Christopher Dresser's Teapot</h4>
+                        <p class="creative-work-description">A study of industrial design's beginnings, told through Dresser's revolutionary teapot. The piece traces how form, function, and minimalism disrupted Victorian ornamentation and helped birth modern design.</p>
+                        <p class="creative-work-link"><a href="https://docs.google.com/document/d/12Hyegz48t87X6XUYjg8XNGfgafDn2oIO/edit?usp=sharing&ouid=109241692916963985102&rtpof=true&sd=true" target="_blank">read here</a></p>
+                    </div>
+
+                    <div class="creative-work-item">
+                        <h4 class="creative-work-title">Standardized Design</h4>
+                        <p class="creative-work-description">This essay interrogates the myth of the "average body" in 20th-century design standards and the ripple effects on accessibility, disability, and universal design. It asks: what does it mean to design for everyone?</p>
+                        <p class="creative-work-link"><a href="https://docs.google.com/document/d/1_4hrQbVJ2Sg_yS4Y4Q30-GYAxpw43MGw/edit?usp=sharing&ouid=109241692916963985102&rtpof=true&sd=true" target="_blank">read here</a></p>
+                    </div>
+
+                    <div class="creative-work-item">
+                        <h4 class="creative-work-title">Architecture & Revisionist History</h4>
+                        <p class="creative-work-description">Through the story of the Berlin Philharmonie, this piece reflects on architecture as both a cultural artifact and a vessel of democracy, asking whether buildings can, and should, embody the ideals of the societies that create them.</p>
+                        <p class="creative-work-link"><a href="https://docs.google.com/document/d/1oIHU9LdhagcCLG1_rSA9FNDsFciXHzPj/edit?usp=sharing&ouid=109241692916963985102&rtpof=true&sd=true" target="_blank">read here</a></p>
+                    </div>
+
+                    <div class="creative-work-item">
+                        <h4 class="creative-work-title">Architecture as Reflection</h4>
+                        <p class="creative-work-description">An exploration of how modern architecture both mirrors and shapes urban life. From skyscrapers to glass facades, the essay contemplates whether architecture is a passive reflection or an active agent in cultural change.</p>
+                        <p class="creative-work-link"><a href="https://docs.google.com/document/d/1g6GntsRDb0J8UpCrBtYGotxE_EsQL_Cz/edit?usp=sharing&ouid=109241692916963985102&rtpof=true&sd=true" target="_blank">read here</a></p>
+                    </div>
+
+                    <div class="creative-work-item">
+                        <h4 class="creative-work-title">Architecture & Subjectivity</h4>
+                        <p class="creative-work-description">A reflection on how design choices reinforce ways of living, from Caroline Bartlett Crane's Everyman's House to Simmel's metropolis. The essay reveals how architecture embeds norms, gender roles, and social rhythms into our daily lives.</p>
+                        <p class="creative-work-link"><a href="https://docs.google.com/document/d/1sHYYJHvAllrgbFcLBUHJ--BY8NvRSs0q/edit?usp=sharing&ouid=109241692916963985102&rtpof=true&sd=true" target="_blank">read here</a></p>
+                    </div>
+
+                    <div class="creative-work-item">
+                        <h4 class="creative-work-title">Saffron: A Cultural and Botanical Journey</h4>
+                        <p class="creative-work-description">Part history, part anthropology, this essay follows saffron's winding path from prehistoric pigments and Minoan frescoes to Persian poetry and genetic origins. It is a story of a spice that is both material and mythical.</p>
+                        <p class="creative-work-link"><a href="https://drive.google.com/file/d/1b00VsQVlhiRR59TuTruc2UDtEnIKnRpD/view?usp=sharing" target="_blank">read here</a></p>
+                    </div>
+
+                    <div class="creative-work-item">
+                        <h4 class="creative-work-title">Haft-Seen: Unraveling the Tapestry of Persian New Year</h4>
+                        <p class="creative-work-description">An anthropological reflection on the Persian Haft-Seen table, this essay explores how seven symbolic objects become more than ritual, they are acts of memory, resistance, and identity within the Iranian diaspora.</p>
+                        <p class="creative-work-link"><a href="https://drive.google.com/file/d/1z1o0MvNQIjzvzMK2KPsEyOKvS-4SPRaM/view?usp=sharing" target="_blank">read here</a></p>
+                    </div>
+
+                    <div class="creative-work-item">
+                        <h4 class="creative-work-title">From Stained Glass to Stained Memories</h4>
+                        <p class="creative-work-description">A personal collection of poems inspired by William Blake's Songs of Innocence and Experience. They weave together memories of Iran, the beauty of childhood summers, and the sharp contrast of lived realities, innocence refracted through stained glass.</p>
+                        <p class="creative-work-link"><a href="https://drive.google.com/file/d/18OUl8dgKxmcDVSeCndlWU0DUXCTz8m_g/view?usp=sharing" target="_blank">read here</a></p>
+                    </div>
+
+                    <div class="creative-work-item">
+                        <h4 class="creative-work-title">I Wish for Time to Slow Down</h4>
+                        <p class="creative-work-description">A contemplative essay that lingers on the desire to pause, to hold moments longer, to resist the relentless pace of modern life. It blends poetic reflection with an existential questioning of time and memory.</p>
+                        <p class="creative-work-link"><a href="https://drive.google.com/file/d/1Y0j1ELE2M6a3KaAel9uL2gxlbelTeGFU/view?usp=sharing" target="_blank">read here</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1144,10 +1295,16 @@
             // Show selected section
             document.getElementById(sectionId).classList.add('active');
             
-            // If about tab is clicked, also show projects section
+            // If about tab is clicked, also show projects section and affiliations
             if (sectionId === 'about') {
                 document.getElementById('projects').classList.add('active');
                 document.getElementById('recent-things').classList.add('active');
+                document.querySelector('.affiliations').style.display = 'block';
+                document.querySelector('.quote-section').style.display = 'block';
+            } else {
+                // Hide affiliations and quote on other pages
+                document.querySelector('.affiliations').style.display = 'none';
+                document.querySelector('.quote-section').style.display = 'none';
             }
             
             // Add active class to clicked tab
