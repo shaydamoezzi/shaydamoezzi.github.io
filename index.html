@@ -688,6 +688,70 @@
             border-bottom-color: #8B0000;
         }
 
+        /* Demo Section Styling */
+        .demo-section {
+            margin-top: 40px;
+        }
+
+        .demo-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .demo-video {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .demo-response {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .demo-video h4, .demo-response h4 {
+            font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+        }
+
+        .demo-analysis {
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .demo-analysis p:first-child {
+            margin-top: 0;
+        }
+
+        .demo-analysis .key-term {
+            color: #8B0000 !important;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .demo-video, .demo-response {
+                min-width: auto;
+            }
+            
+            .demo-analysis {
+                padding: 20px;
+            }
+        }
+
         .date-label {
             font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
             font-size: 0.75rem;
@@ -1007,6 +1071,45 @@
                         
                         <p>Ultimately, I aim to develop systems that can reason about complex real-world video data. I think this could help machines better organize, interpret, and construct memories from continuous visual experience, much like the way we (humans) do.
                         </p>
+                    </div>
+                    
+                    <!-- Demo Section -->
+                    <div class="demo-section">
+                        <h3 style="font-size: 1.1rem; margin: 50px 0 20px 0; color: #000; border-bottom: 1px solid #eee; padding-bottom: 8px;">do language models understand motion?</h3>
+                        
+                        <div class="demo-container">
+                            <div class="demo-video">
+                                <h4 style="font-size: 0.9rem; color: #666; margin-bottom: 10px; font-weight: 500;">physically invalid newton's cradle</h4>
+                                <video controls muted style="width: 100%; max-width: 250px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <source src="src/newtonscradle.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            
+                            <div class="demo-response">
+                                <h4 style="font-size: 0.9rem; color: #666; margin-bottom: 10px; font-weight: 500;">gemini's response</h4>
+                                <img src="src/geminiresponse.png" alt="Gemini's response about the Newton's cradle video" style="width: 100%; max-width: 600px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            </div>
+                        </div>
+                        
+                        <div class="demo-analysis">
+                            <p style="font-size: 0.9rem; color: #555; margin: 25px 0 15px 0; line-height: 1.6;">
+                                I asked <span class="key-term">Gemini</span> whether the behavior in this video was physically correct. Gemini says yes, and specifically that "the last ball swings outwards". We never see this motion occur.
+                            </p>
+                            
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 15px; line-height: 1.6;">
+                                This illustrates a fundamental challenge in current video understanding: <span class="key-term">Why does a model that can interpret text and images so well fail to reason over simple dynamics in a video?</span>
+                            </p>
+                            
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 15px; line-height: 1.6;">
+                                What is missing from our current approaches to video understanding, especially when it comes to <span class="key-term">temporal reasoning and motion</span>?
+                            </p>
+                            
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 15px; line-height: 1.6;">
+                                My research is currently motivated by such failures. We must move beyond static frames and contextual priors, and build representations that encode the unique <span class="key-term">motion signatures and evolving dynamics</span> of each sequence.
+                            </p>
+                    
+                        </div>
                     </div>
                 </div>
 
